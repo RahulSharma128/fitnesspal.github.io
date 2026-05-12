@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100→85 KG Transformation Program</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #111111;
+    --card: #161616;
+    --border: #252525;
+    --accent: #e8ff47;
+    --accent2: #ff6b35;
+    --text: #e8e8e8;
+    --muted: #888;
+    --green: #4ade80;
+    --red: #f87171;
+    --blue: #60a5fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--charcoal);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,255,71,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 0.92;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* NAV TABS */
+  .tabs {
+    background: var(--charcoal);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab {
+    padding: 16px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* SECTIONS */
+  .section {
+    display: none;
+    padding: 48px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .section-title span { color: var(--accent); }
+  .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon { font-size: 18px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .section, .hero, .tabs { padding-left: 20px; padding-right: 20px; }
+  }
+
+  /* DAY CARDS */
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .day-header {
+    background: #1a1a1a;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .day-focus {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .focus-push { background: rgba(232,255,71,0.12); color: var(--accent); }
+  .focus-pull { background: rgba(96,165,250,0.12); color: var(--blue); }
+  .focus-legs { background: rgba(248,113,113,0.12); color: var(--red); }
+  .focus-upper { background: rgba(74,222,128,0.12); color: var(--green); }
+  .focus-full { background: rgba(255,107,53,0.12); color: var(--accent2); }
+
+  /* EXERCISE TABLE */
+  .ex-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ex-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: #0f0f0f;
+  }
+  .ex-table td {
+    padding: 13px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(37,37,37,0.6);
+    vertical-align: top;
+  }
+  .ex-table tr:last-child td { border-bottom: none; }
+  .ex-table tr:hover td { background: rgba(232,255,71,0.02); }
+  .ex-name { font-weight: 600; color: #fff; }
+  .ex-cue { font-size: 12px; color: var(--muted); margin-top: 4px; font-style: italic; }
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+  .badge-heavy { background: rgba(248,113,113,0.15); color: var(--red); }
+  .badge-mod { background: rgba(96,165,250,0.15); color: var(--blue); }
+  .badge-ctrl { background: rgba(74,222,128,0.15); color: var(--green); }
+
+  /* NUTRITION */
+  .macro-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+  .macro-p { background: var(--green); }
+  .macro-c { background: var(--blue); }
+  .macro-f { background: var(--accent2); }
+  .macro-legend {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .macro-legend span { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--black);
+  }
+  .tl-month {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .tl-weight {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .tl-desc { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  /* TIPS */
+  .tip-list { list-style: none; }
+  .tip-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    background: rgba(232,255,71,0.04);
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .highlight.red { border-left-color: var(--red); background: rgba(248,113,113,0.04); }
+  .highlight.blue { border-left-color: var(--blue); background: rgba(96,165,250,0.04); }
+  .highlight.green { border-left-color: var(--green); background: rgba(74,222,128,0.04); }
+
+  /* METRICS */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .metric-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* MEAL CARDS */
+  .meal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .meal-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .meal-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .meal-items { color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .meal-cals {
+    margin-top: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent2);
+  }
+
+  /* PROGRESS BAR */
+  .prog-bar {
+    background: var(--border);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .prog-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 1s ease;
+  }
+
+  /* WEEK SCHEDULE */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .week-day {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .week-day:hover { border-color: var(--accent); }
+  .week-day .wd-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; }
+  .week-day .wd-focus { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .week-day .wd-tag {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin: 8px auto 0;
+  }
+
+  p { margin-bottom: 12px; color: var(--muted); font-size: 14px; }
+  strong { color: var(--text); }
+  h3 { color: #fff; font-size: 16px; margin: 20px 0 10px; }
+
+  .overload-table { width: 100%; border-collapse: collapse; }
+  .overload-table th, .overload-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .overload-table th { 
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    background: #0f0f0f; text-align: left;
+  }
+  .overload-table td:first-child { color: #fff; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Elite Transformation Program · Customized Plan</div>
+  <h1>100 <span>→</span> 85 KG<br>BODY RECOMP</h1>
+  <p class="hero-sub">A science-based, coach-level program built for sustainable fat loss, muscle preservation, and a complete physical transformation — designed specifically for you.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value">15 KG</div><div class="stat-label">Fat to Lose</div></div>
+    <div class="stat"><div class="stat-value">5×/WK</div><div class="stat-label">Training Days</div></div>
+    <div class="stat"><div class="stat-value">90 MIN</div><div class="stat-label">Per Session</div></div>
+    <div class="stat"><div class="stat-value">4 MO</div><div class="stat-label">Target Timeline</div></div>
+    <div class="stat"><div class="stat-value">180G+</div><div class="stat-label">Daily Protein</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('split')">Weekly Split</div>
+  <div class="tab" onclick="showTab('workouts')">Workouts</div>
+  <div class="tab" onclick="showTab('cardio')">Cardio</div>
+  <div class="tab" onclick="showTab('nutrition')">Nutrition</div>
+  <div class="tab" onclick="showTab('overload')">Overload Plan</div>
+  <div class="tab" onclick="showTab('recovery')">Recovery</div>
+  <div class="tab" onclick="showTab('timeline')">Timeline</div>
+  <div class="tab" onclick="showTab('mistakes')">Mistakes</div>
+  <div class="tab" onclick="showTab('mindset')">Mindset</div>
+</div>
+
+<!-- SECTION: SPLIT -->
+<div id="split" class="section active">
+  <div class="section-title">WEEKLY <span>SPLIT</span></div>
+  <div class="section-sub">Push–Pull–Legs hybrid optimized for fat loss, muscle retention, and 5-day adherence without overtraining.</div>
+
+  <div class="week-grid">
+    <div class="week-day">
+      <div class="wd-name">MON</div>
+      <div class="wd-focus">Push A</div>
+      <div class="wd-tag" style="background:var(--accent)"></div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">TUE</div>
+      <div class="wd-focus">Pull A</div>
+      <div class="wd-tag" style="background:var(--blue)"></div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">WED</div>
+      <div class="wd-focus">Legs A</div>
+      <div class="wd-tag" style="background:var(--red)"></div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">THU</div>
+      <div class="wd-focus">Upper Body</div>
+      <div class="wd-tag" style="background:var(--green)"></div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">FRI</div>
+      <div class="wd-focus">Legs B (Glute/Ham)</div>
+      <div class="wd-tag" style="background:var(--accent2)"></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">⚡</span> Why This Split Works</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span>Each muscle group gets hit 1.5–2× per week — optimal frequency for beginners building muscle while in a deficit</span></li>
+        <li><span class="tip-num">02</span><span>Push/Pull pairing ensures antagonist muscles always recover while you train the other</span></li>
+        <li><span class="tip-num">03</span><span>Leg day mid-week prevents fatigue accumulation in lower body before upper sessions</span></li>
+        <li><span class="tip-num">04</span><span>Friday Legs B (glute/ham dominant) ensures full lower body development — quads hit Monday, posterior chain hit Friday. Two distinct stimuli, zero overlap.</span></li>
+        <li><span class="tip-num">05</span><span>Sat/Sun = active rest (walking, stretching) to maintain NEAT without impeding recovery</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🕐</span> Daily Session Structure</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">0–5</span><span><strong>Warm-Up</strong> — Dynamic stretches, joint mobility, 5 min light cardio</span></li>
+        <li><span class="tip-num">5–55</span><span><strong>Resistance Training</strong> — Main compound lifts + accessories (50 min)</span></li>
+        <li><span class="tip-num">55–80</span><span><strong>Cardio</strong> — Incline walk or LISS (25 min after weights)</span></li>
+        <li><span class="tip-num">80–90</span><span><strong>Cool Down</strong> — Static stretching, breathing, foam rolling</span></li>
+      </ul>
+      <div class="highlight">
+        <strong>Key Rule:</strong> Always lift before cardio. Weights require glycogen and peak CNS output. Post-lift cardio accesses more fat for fuel when glycogen is partially depleted.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> Muscle Group Coverage Per Week</div>
+    <div style="margin-top:8px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;"><span style="color:#fff">Chest</span><span style="color:var(--muted)">Mon + Thu</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:75%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Back</span><span style="color:var(--muted)">Tue + Fri</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Shoulders</span><span style="color:var(--muted)">Mon + Thu</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:70%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Legs / Glutes</span><span style="color:var(--muted)">Wed + Fri</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:90%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Biceps</span><span style="color:var(--muted)">Tue + Thu</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:65%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Triceps</span><span style="color:var(--muted)">Mon + Thu</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:65%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;margin-top:12px;"><span style="color:#fff">Core</span><span style="color:var(--muted)">Wed + Fri + Daily posture work</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:85%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: WORKOUTS -->
+<div id="workouts" class="section">
+  <div class="section-title">DETAILED <span>WORKOUTS</span></div>
+  <div class="section-sub">Every exercise includes sets, reps, rest, tempo, form cues, and alternatives. Train smart — not just hard.</div>
+
+  <!-- MONDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">MONDAY — PUSH A (Chest, Shoulders, Triceps)</div>
+      <div class="day-focus focus-push">PUSH</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ex-table">
+        <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Intensity</th><th>Form Cue / Alt</th></tr>
+        <tr>
+          <td>1</td>
+          <td><div class="ex-name">Barbell Bench Press</div><div class="ex-cue">Primary chest builder. Control the eccentric.</div></td>
+          <td>4 × 8–10</td><td>90s</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">Retract scapula, feet flat. Alt: Dumbbell Press or Smith Machine</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="ex-name">Incline Dumbbell Press</div><div class="ex-cue">Upper chest emphasis. 30–45° angle only.</div></td>
+          <td>3 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Don't flare elbows. Alt: Incline Smith Machine</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="ex-name">Cable Chest Fly</div><div class="ex-cue">Full stretch at the bottom. Squeeze at top.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Slight elbow bend throughout. Alt: Pec Deck</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="ex-name">Seated Dumbbell Shoulder Press</div><div class="ex-cue">Overhead pressing for shoulder mass.</div></td>
+          <td>3 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Don't arch lower back. Alt: Machine Shoulder Press</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="ex-name">Lateral Raises (Dumbbell or Cable)</div><div class="ex-cue">Shoulder width — most visible aesthetic improvement.</div></td>
+          <td>4 × 15–20</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Lean slightly forward. Lead with elbow. Alt: Machine lateral raise</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="ex-name">Tricep Rope Pushdown</div><div class="ex-cue">Full elbow extension. Don't swing.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Spread rope at bottom. Alt: Band pushdowns</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="ex-name">Overhead Tricep Extension</div><div class="ex-cue">Long head focus — biggest part of tricep.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Keep elbows tight. Alt: Skullcrushers (EZ bar)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">TUESDAY — PULL A (Back, Biceps, Rear Delts)</div>
+      <div class="day-focus focus-pull">PULL</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ex-table">
+        <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Intensity</th><th>Form Cue / Alt</th></tr>
+        <tr>
+          <td>1</td>
+          <td><div class="ex-name">Deadlift (Conventional or Romanian)</div><div class="ex-cue">King of all fat-burning, muscle-building exercises.</div></td>
+          <td>4 × 6–8</td><td>2 min</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">Hinge at hips, neutral spine. Alt: Trap bar deadlift or leg press</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="ex-name">Lat Pulldown (Wide Grip)</div><div class="ex-cue">V-taper builder. Pull to upper chest, not behind neck.</div></td>
+          <td>4 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Lean back 10°, drive elbows down. Alt: Assisted pull-up</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="ex-name">Seated Cable Row (Close Grip)</div><div class="ex-cue">Mid-back thickness. Row to belly button.</div></td>
+          <td>3 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Keep chest tall, elbows close. Alt: DB Row on bench</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="ex-name">Single-Arm Dumbbell Row</div><div class="ex-cue">Unilateral — prevents strength imbalances.</div></td>
+          <td>3 × 12 each</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Drive elbow to ceiling. Alt: Machine Row</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="ex-name">Face Pulls (Cable)</div><div class="ex-cue">Rear delt + rotator cuff health. Non-negotiable.</div></td>
+          <td>3 × 15–20</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Pull to forehead, elbows high. Alt: Band pull-aparts</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="ex-name">Barbell or EZ Bar Curl</div><div class="ex-cue">Bicep mass. Full range of motion.</div></td>
+          <td>3 × 10–12</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">No swinging. Squeeze at top. Alt: Dumbbell curl</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="ex-name">Incline Dumbbell Curl</div><div class="ex-cue">Long head stretch — peak bicep.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Let arm hang fully at bottom. Alt: Cable curl</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">WEDNESDAY — LEGS A (Quads, Hamstrings, Glutes, Calves)</div>
+      <div class="day-focus focus-legs">LEGS</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ex-table">
+        <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Intensity</th><th>Form Cue / Alt</th></tr>
+        <tr>
+          <td>1</td>
+          <td><div class="ex-name">Barbell Back Squat</div><div class="ex-cue">Highest metabolic demand exercise. Build it slowly.</div></td>
+          <td>4 × 8–10</td><td>2 min</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">Knees track over toes, chest tall. Alt: Goblet squat or leg press</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="ex-name">Romanian Deadlift</div><div class="ex-cue">Hamstring + glute. Hinge, don't squat.</div></td>
+          <td>3 × 10–12</td><td>90s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Feel stretch in hamstrings. Alt: Lying leg curl</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="ex-name">Leg Press</div><div class="ex-cue">Volume quad work. Safer for beginners.</div></td>
+          <td>3 × 12–15</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Don't lock knees. Full range. Alt: Hack squat</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="ex-name">Walking Lunges (Dumbbell)</div><div class="ex-cue">Balance + coordination + unilateral strength.</div></td>
+          <td>3 × 12 each</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Long stride, front knee over ankle. Alt: Reverse lunges (easier on knees)</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="ex-name">Leg Curl (Seated or Lying)</div><div class="ex-cue">Hamstring isolation. Often neglected — don't skip.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Slow eccentric (3 seconds down). Alt: Nordic curl</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="ex-name">Standing Calf Raise</div><div class="ex-cue">Calves respond to volume. Don't skip.</div></td>
+          <td>4 × 15–20</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Full stretch at bottom, pause at top. Alt: Seated calf raise</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="ex-name">Plank + Dead Bug superset</div><div class="ex-cue">Core stability essential for all big lifts.</div></td>
+          <td>3 × 30–45s each</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Don't hold breath. Alt: Ab wheel rollout</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- THURSDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">THURSDAY — UPPER BODY (Strength Focus + Lagging Areas)</div>
+      <div class="day-focus focus-upper">UPPER</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ex-table">
+        <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Intensity</th><th>Form Cue / Alt</th></tr>
+        <tr>
+          <td>1</td>
+          <td><div class="ex-name">Overhead Press (Barbell or DB)</div><div class="ex-cue">Best shoulder builder. Tests overall pressing strength.</div></td>
+          <td>4 × 8–10</td><td>90s</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">Brace core, press straight up. Alt: Machine shoulder press</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="ex-name">Chest-Supported Row (Machine or DB)</div><div class="ex-cue">Eliminates lower back stress. Pure back work.</div></td>
+          <td>4 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Squeeze shoulder blades together. Alt: Seated cable row</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="ex-name">Incline Push-Up or Dip (Assisted)</div><div class="ex-cue">Bodyweight strength — foundational movement.</div></td>
+          <td>3 × 10–15</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Lean forward for chest. Alt: Dumbbell fly</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="ex-name">Lat Pulldown (Underhand / Narrow)</div><div class="ex-cue">Lower lat emphasis for that V-taper sweep.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Supinate grip, pull to chin. Alt: Cable straight-arm pulldown</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="ex-name">Lateral Raise + Front Raise Superset</div><div class="ex-cue">Full shoulder delt cap development.</div></td>
+          <td>3 × 15 each</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Light weight, high quality. Alt: Cable variation</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="ex-name">Hammer Curl</div><div class="ex-cue">Brachialis + brachioradialis. Adds arm thickness.</div></td>
+          <td>3 × 12–15</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Neutral grip. Don't swing. Alt: Cross-body hammer</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="ex-name">Tricep Dips (Bench) or Close-Grip Press</div><div class="ex-cue">Compound tricep builder.</div></td>
+          <td>3 × 10–15</td><td>60s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Keep elbows tucked, don't shrug. Alt: Diamond push-up</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-name">FRIDAY — LEGS B (Glute & Hamstring Dominant + Core)</div>
+      <div class="day-focus focus-legs">LEGS B</div>
+    </div>
+    <div style="padding:16px 24px 8px;background:#0f0f0f;border-bottom:1px solid var(--border);">
+      <span style="font-size:13px;color:var(--muted);">
+        <strong style="color:var(--accent)">Why Legs B?</strong> Monday's Legs A was quad-dominant (squat pattern). Friday flips the emphasis — glutes and hamstrings lead, with different loading angles and movements. Two leg days per week is how intermediates actually build size and strength in the lower body. This is not a repeat — this is a completely different stimulus.
+      </span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ex-table">
+        <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Intensity</th><th>Form Cue / Alt</th></tr>
+        <tr>
+          <td>1</td>
+          <td><div class="ex-name">Hack Squat or Leg Press (High Foot Placement)</div><div class="ex-cue">Quad + glute loading without spinal load. Go heavy here safely.</div></td>
+          <td>4 × 8–10</td><td>2 min</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">High foot position = more glute. Full depth. Alt: Belt squat</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="ex-name">Barbell Hip Thrust</div><div class="ex-cue">The single best glute builder. Non-negotiable on this day.</div></td>
+          <td>4 × 10–12</td><td>90s</td><td><span class="badge badge-heavy">HEAVY</span></td>
+          <td style="font-size:12px;color:var(--muted)">Drive hips to ceiling, squeeze at top for 1s. Chin tucked. Alt: Dumbbell hip thrust or glute bridge</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="ex-name">Seated Leg Curl</div><div class="ex-cue">Hamstring isolation at a longer muscle length — superior to lying curl for hypertrophy.</div></td>
+          <td>4 × 10–12</td><td>75s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Slow 3-sec eccentric on every rep. Alt: Nordic hamstring curl</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="ex-name">Bulgarian Split Squat (Dumbbell)</div><div class="ex-cue">Best unilateral leg exercise. Destroys quad and glute imbalances.</div></td>
+          <td>3 × 10 each leg</td><td>90s</td><td><span class="badge badge-mod">MODERATE</span></td>
+          <td style="font-size:12px;color:var(--muted)">Rear foot elevated, front foot far out. Torso slight forward lean = more glute. Alt: Step-up with DB</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="ex-name">Cable Pull-Through</div><div class="ex-cue">Teaches the hip hinge pattern. Hits hamstrings + glutes through full range.</div></td>
+          <td>3 × 15</td><td>60s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Drive hips forward at top. Don't use your back. Alt: KB Swing or RDL with light load</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><div class="ex-name">Seated Calf Raise</div><div class="ex-cue">Soleus (deeper calf muscle) — only hit properly when knee is bent.</div></td>
+          <td>4 × 15–20</td><td>45s</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">Full stretch at bottom, hard pause at top. Alt: Leg press calf raise</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><div class="ex-name">Ab Circuit — Cable Crunch + Hanging Knee Raise + Pallof Press</div><div class="ex-cue">Intermediate core work: flexion + anti-rotation + compression.</div></td>
+          <td>3 rounds × 12 each</td><td>60s between rounds</td><td><span class="badge badge-ctrl">CONTROLLED</span></td>
+          <td style="font-size:12px;color:var(--muted)">No kipping on knee raises. Control every rep. Alt: Decline crunch + leg raise + plank hold</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: CARDIO -->
+<div id="cardio" class="section">
+  <div class="section-title">CARDIO <span>STRATEGY</span></div>
+  <div class="section-sub">Fat-burning cardio that protects muscle — not destroys it. Science-based, beginner-safe, progressive.</div>
+
+  <div class="highlight green">
+    <strong>Golden Rule:</strong> Always do resistance training FIRST. Do cardio AFTER weights. This preserves muscle protein synthesis priority and burns more fat post-lift.
+  </div>
+
+  <div class="grid-2" style="margin-top:24px;">
+    <div class="card">
+      <div class="card-title"><span class="icon">🚶</span> Primary: Incline Treadmill Walk</div>
+      <p><strong>Why:</strong> Burns 300–400 kcal/hr at 100 kg with ZERO muscle breakdown. Zero impact. Sustainable daily.</p>
+      <ul class="tip-list">
+        <li><span class="tip-num">Speed</span><span>5.5–6.5 km/h — brisk walk, not jog</span></li>
+        <li><span class="tip-num">Incline</span><span>8–12% — elevates HR without running</span></li>
+        <li><span class="tip-num">Duration</span><span>25 min post-weights, daily Monday–Friday</span></li>
+        <li><span class="tip-num">Heart Rate</span><span>Target 60–70% max HR (130–145 bpm for you)</span></li>
+        <li><span class="tip-num">Months 1–2</span><span>20 min, 8% incline</span></li>
+        <li><span class="tip-num">Months 3–4</span><span>25 min, 10% incline</span></li>
+        <li><span class="tip-num">Months 5–6</span><span>30 min, 12% incline</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🚲</span> Secondary: Stationary Bike / Stairmaster</div>
+      <p><strong>Why:</strong> Great alternatives when treadmill is occupied or for variety. Low impact, high output.</p>
+      <ul class="tip-list">
+        <li><span class="tip-num">Bike</span><span>Moderate resistance, 80–90 RPM, 20–25 min. Best for recovery days or leg soreness</span></li>
+        <li><span class="tip-num">Stairmaster</span><span>Level 6–9, 20 min. Very effective but tiring — use Thursday/Friday only</span></li>
+        <li><span class="tip-num">Rowing</span><span>Excellent total-body LISS. 500m intervals with 90s rest × 6 rounds</span></li>
+      </ul>
+      <div class="highlight blue" style="margin-top:16px;">
+        Rotate cardio modalities weekly to prevent adaptation. Same machine every day leads to plateau within 3–4 weeks.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0;">
+    <div class="card-title"><span class="icon">⚡</span> HIIT — Use Sparingly (Months 3–6 Only)</div>
+    <p>HIIT is powerful but taxing. At 100 kg training 5× per week, daily HIIT would cause overtraining. Use strategically:</p>
+    <ul class="tip-list">
+      <li><span class="tip-num">When</span><span>Replace LISS cardio on ONE day per week (e.g. Friday)</span></li>
+      <li><span class="tip-num">Protocol</span><span>20s max effort cycling / running → 40s full rest × 10 rounds = 10 min total</span></li>
+      <li><span class="tip-num">Bike Sprints</span><span>Best HIIT for beginners — low impact, high intensity, legs only</span></li>
+      <li><span class="tip-num">After Effect</span><span>HIIT creates EPOC (elevated calorie burn for 12–24 hrs post). One session/week is enough.</span></li>
+      <li><span class="tip-num">Avoid</span><span>HIIT on leg day (Wednesday) or the day after. Legs need recovery for heavy squats.</span></li>
+    </ul>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-val">~350</div><div class="metric-lbl">kcal burned per 25 min incline walk (100 kg)</div></div>
+    <div class="metric"><div class="metric-val">125–145</div><div class="metric-lbl">Target Heart Rate (bpm) for fat burn zone</div></div>
+    <div class="metric"><div class="metric-val">5×</div><div class="metric-lbl">Cardio sessions per week</div></div>
+    <div class="metric"><div class="metric-val">~1750</div><div class="metric-lbl">Extra kcal burned weekly from cardio alone</div></div>
+  </div>
+</div>
+
+<!-- SECTION: NUTRITION -->
+<div id="nutrition" class="section">
+  <div class="section-title">FAT LOSS <span>NUTRITION</span></div>
+  <div class="section-sub">Eat to fuel your workouts, preserve muscle, and lose fat. No crash dieting. No starvation. Real food that works.</div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-val">2200</div><div class="metric-lbl">Daily Calories (deficit target)</div></div>
+    <div class="metric"><div class="metric-val">180g</div><div class="metric-lbl">Protein (minimum daily)</div></div>
+    <div class="metric"><div class="metric-val">220g</div><div class="metric-lbl">Carbohydrates</div></div>
+    <div class="metric"><div class="metric-val">65g</div><div class="metric-lbl">Healthy Fats</div></div>
+    <div class="metric"><div class="metric-val">~500</div><div class="metric-lbl">kcal Deficit per Day</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📐</span> Calorie Calculation (Your Numbers)</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">TDEE</span><span>~2750–2900 kcal/day at 100 kg, moderately active + gym (estimated)</span></li>
+      <li><span class="tip-num">Deficit</span><span>500 kcal/day = 0.5 kg fat loss/week (theoretical). Combined with steps = slightly more.</span></li>
+      <li><span class="tip-num">Target</span><span><strong>2200–2300 kcal/day</strong> — enough to train hard, build muscle, and steadily lose fat</span></li>
+      <li><span class="tip-num">Protein</span><span>1.8g per kg body weight = 180g. This is non-negotiable. Protein preserves muscle in a deficit.</span></li>
+      <li><span class="tip-num">Carbs</span><span>Time them around workouts — oats before, rice after. Cut carbs in the evening.</span></li>
+    </ul>
+    <div class="macro-bar" style="margin-top:16px;">
+      <div class="macro-p" style="width:33%"></div>
+      <div class="macro-c" style="width:40%"></div>
+      <div class="macro-f" style="width:27%"></div>
+    </div>
+    <div class="macro-legend">
+      <span><div class="dot" style="background:var(--green)"></div>Protein 33% (720 kcal)</span>
+      <span><div class="dot" style="background:var(--blue)"></div>Carbs 40% (880 kcal)</span>
+      <span><div class="dot" style="background:var(--accent2)"></div>Fats 27% (600 kcal)</span>
+    </div>
+  </div>
+
+  <h3>🇮🇳 Indian-Friendly Meal Plan (Sample Day ~2200 kcal)</h3>
+  <div class="grid-2">
+    <div class="meal">
+      <div class="meal-time">07:00 — Pre-Workout</div>
+      <div class="meal-name">Light Fuel Meal</div>
+      <div class="meal-items">
+        2 whole eggs + 2 egg whites (scrambled)<br>
+        1 bowl oats with banana (or 2 multigrain rotis)<br>
+        1 glass milk or whey shake (if available)<br>
+        Black coffee (optional — enhances fat burn)
+      </div>
+      <div class="meal-cals">~450 kcal · 35g protein</div>
+    </div>
+    <div class="meal">
+      <div class="meal-time">10:30 — Post-Workout</div>
+      <div class="meal-name">Recovery Meal</div>
+      <div class="meal-items">
+        200g chicken breast or paneer (grilled)<br>
+        1 cup cooked rice or 2 chapatis<br>
+        1 cup dal or rajma<br>
+        1 cup mixed vegetables (sabzi)
+      </div>
+      <div class="meal-cals">~600 kcal · 50g protein</div>
+    </div>
+    <div class="meal">
+      <div class="meal-time">13:30 — Lunch</div>
+      <div class="meal-name">Main Meal</div>
+      <div class="meal-items">
+        150g grilled chicken / fish / tofu<br>
+        1 cup chana or lentil soup<br>
+        Large bowl mixed salad (cucumber, tomato, onion)<br>
+        1 cup curd / yogurt
+      </div>
+      <div class="meal-cals">~550 kcal · 45g protein</div>
+    </div>
+    <div class="meal">
+      <div class="meal-time">16:30 — Snack</div>
+      <div class="meal-name">Smart Snack</div>
+      <div class="meal-items">
+        1 scoop whey protein shake OR<br>
+        100g Greek yogurt + handful nuts OR<br>
+        Boiled chana (sprouts) with lemon
+      </div>
+      <div class="meal-cals">~250 kcal · 25g protein</div>
+    </div>
+    <div class="meal">
+      <div class="meal-time">20:00 — Dinner</div>
+      <div class="meal-name">Light, High-Protein Dinner</div>
+      <div class="meal-items">
+        150g grilled fish or chicken or 200g paneer<br>
+        Large salad or 1 cup cooked vegetables<br>
+        1 chapati only (minimize carbs at night)<br>
+        Dal or soup
+      </div>
+      <div class="meal-cals">~400 kcal · 40g protein</div>
+    </div>
+    <div class="meal">
+      <div class="meal-time">22:00 — Before Bed (Optional)</div>
+      <div class="meal-name">Casein Snack</div>
+      <div class="meal-items">
+        200ml warm milk OR<br>
+        100g cottage cheese / paneer<br>
+        (Slow-digesting protein → overnight muscle repair)
+      </div>
+      <div class="meal-cals">~150 kcal · 15g protein</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <div class="card-title"><span class="icon">🛡️</span> Craving Control & Anti-Overeating Tactics</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">01</span><span><strong>Protein at every meal</strong> — protein is the most satiating macro. High protein = fewer cravings.</span></li>
+      <li><span class="tip-num">02</span><span><strong>Eat your biggest meals around workouts</strong> — breakfast and post-workout. Dinner = lightest.</span></li>
+      <li><span class="tip-num">03</span><span><strong>3L+ water daily</strong> — hunger is often thirst. Drink a full glass before every meal.</span></li>
+      <li><span class="tip-num">04</span><span><strong>High volume, low calorie foods</strong> — cucumber, tomato, spinach, curd, dal = fills stomach without excess calories.</span></li>
+      <li><span class="tip-num">05</span><span><strong>Don't keep biscuits/namkeen at home</strong> — environment beats willpower every time.</span></li>
+      <li><span class="tip-num">06</span><span><strong>Weekend 90/10 rule</strong> — eat on plan 90% of the time. One social meal per weekend won't derail progress.</span></li>
+      <li><span class="tip-num">07</span><span><strong>Black coffee before workouts</strong> — natural appetite suppressant + fat mobilizer. Use it strategically.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION: OVERLOAD -->
+<div id="overload" class="section">
+  <div class="section-title">PROGRESSIVE <span>OVERLOAD</span></div>
+  <div class="section-sub">The single most important principle for building muscle while losing fat. If you're not progressing, you're not growing.</div>
+
+  <div class="highlight">
+    <strong>Core Principle:</strong> Your body only builds muscle when it has a reason to. Progressive overload gives it that reason. Never do the same workout twice without trying to improve something.
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <div class="card-title"><span class="icon">📈</span> The Hierarchy of Progression</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">FIRST</span><span><strong>Add Reps</strong> — If your target is 8–10, aim to hit 10 before adding weight. Master the movement first.</span></li>
+      <li><span class="tip-num">THEN</span><span><strong>Add Weight</strong> — Once you consistently hit the top of your rep range, add 2.5–5 kg on big lifts, 1–2 kg on isolation moves.</span></li>
+      <li><span class="tip-num">THEN</span><span><strong>Add Sets</strong> — After 6–8 weeks, add a set to compound movements (3→4) for more volume.</span></li>
+      <li><span class="tip-num">THEN</span><span><strong>Reduce Rest</strong> — Shorter rest (90s→75s) with same weight = higher intensity, more conditioning.</span></li>
+      <li><span class="tip-num">ALSO</span><span><strong>Improve Tempo</strong> — A slower eccentric (3 seconds down) with same weight is progressive overload.</span></li>
+    </ul>
+  </div>
+
+  <div style="overflow-x:auto; margin-bottom:24px;">
+    <table class="overload-table">
+      <tr><th>Exercise</th><th>Month 1–2 Start</th><th>Month 3–4 Target</th><th>Month 5–6 Target</th><th>Weekly Increment</th></tr>
+      <tr><td>Barbell Bench Press</td><td>40–50 kg × 8</td><td>60–70 kg × 8</td><td>80 kg × 8</td><td>+2.5 kg when form is solid</td></tr>
+      <tr><td>Squat</td><td>50–60 kg × 8</td><td>70–80 kg × 8</td><td>90–100 kg × 6</td><td>+2.5–5 kg per week</td></tr>
+      <tr><td>Deadlift</td><td>60–70 kg × 6</td><td>90–100 kg × 6</td><td>110–120 kg × 5</td><td>+5 kg when 6 reps = easy</td></tr>
+      <tr><td>Lat Pulldown</td><td>40 kg × 12</td><td>55–65 kg × 10</td><td>70–80 kg × 10</td><td>+2.5 kg when 12 reps achieved</td></tr>
+      <tr><td>OHP</td><td>25–35 kg × 8</td><td>45–55 kg × 8</td><td>60 kg × 8</td><td>+2.5 kg every 1–2 weeks</td></tr>
+      <tr><td>Dumbbell Curl</td><td>10–12 kg × 12</td><td>16–18 kg × 12</td><td>20–22 kg × 10</td><td>+2 kg when top rep range hit</td></tr>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">🔄</span> Plateau Busters</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">1</span><span>Deload week every 6–8 weeks: lift 60% of usual weight for one full week. Recover, then come back stronger.</span></li>
+        <li><span class="tip-num">2</span><span>Change exercise variation: if Bench Press stalls, switch to Dumbbell Press for 4 weeks.</span></li>
+        <li><span class="tip-num">3</span><span>Change rep range: been doing 3×10? Try 5×5 heavy. Shock the system.</span></li>
+        <li><span class="tip-num">4</span><span>Check sleep and protein — plateaus are often recovery failures, not training failures.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📓</span> Track Everything</div>
+      <p>You cannot manage what you don't measure. Use a simple notebook or app:</p>
+      <ul class="tip-list">
+        <li><span class="tip-num">LOG</span><span>Every exercise, every set, every rep, every weight used</span></li>
+        <li><span class="tip-num">WEIGH</span><span>Yourself every Monday morning, fasted, post-toilet. Note the number.</span></li>
+        <li><span class="tip-num">MEASURE</span><span>Waist circumference every 2 weeks. Scale can lie. Tape measure doesn't.</span></li>
+        <li><span class="tip-num">PHOTO</span><span>Monthly progress photos — same time, same lighting. Most motivating thing you can do.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: RECOVERY -->
+<div id="recovery" class="section">
+  <div class="section-title">RECOVERY <span>& LIFESTYLE</span></div>
+  <div class="section-sub">Recovery is where transformation actually happens. Training tears you down. Sleep and nutrition build you back up stronger.</div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-val">7–9h</div><div class="metric-lbl">Sleep Per Night</div></div>
+    <div class="metric"><div class="metric-val">3.5L</div><div class="metric-lbl">Water Daily Minimum</div></div>
+    <div class="metric"><div class="metric-val">10k+</div><div class="metric-lbl">Steps Per Day Target</div></div>
+    <div class="metric"><div class="metric-val">2×/wk</div><div class="metric-lbl">Foam Rolling / Mobility</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">😴</span> Sleep — The Master Recovery Tool</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">WHY</span><span>Growth hormone peaks during deep sleep. Muscle is literally built while you sleep, not in the gym.</span></li>
+        <li><span class="tip-num">TARGET</span><span>7–9 hours per night. Less than 6 hours = increased cortisol, muscle breakdown, fat retention, increased hunger by 20–25%.</span></li>
+        <li><span class="tip-num">TIP 1</span><span>Same bedtime every night, even weekends. Circadian rhythm is everything.</span></li>
+        <li><span class="tip-num">TIP 2</span><span>No screens 45 min before bed. Blue light kills melatonin. Read or stretch instead.</span></li>
+        <li><span class="tip-num">TIP 3</span><span>Keep room cool (18–20°C). Sleep quality improves significantly in cooler temps.</span></li>
+        <li><span class="tip-num">TIP 4</span><span>Avoid large meals within 2 hrs of sleep. Digest before you rest.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">💧</span> Hydration Protocol</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">BASE</span><span>3–3.5 litres water minimum. At 100 kg training hard, you may need up to 4L.</span></li>
+        <li><span class="tip-num">TIMING</span><span>1 glass immediately upon waking. 1 glass before each meal. Bottle at gym always.</span></li>
+        <li><span class="tip-num">WORKOUT</span><span>500–700ml during training. Sip continuously, don't chug.</span></li>
+        <li><span class="tip-num">SIGNAL</span><span>Urine should be pale yellow. Dark urine = dehydrated. Clear = overhydrated.</span></li>
+        <li><span class="tip-num">ELECTROLYTES</span><span>Add a pinch of pink salt to water after hard sessions. Prevents cramps.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🦾</span> Active Recovery (Weekends)</div>
+    <p>Saturday and Sunday are NOT rest days in the traditional sense. They're active recovery days that keep your metabolism elevated.</p>
+    <ul class="tip-list">
+      <li><span class="tip-num">WALK</span><span>10,000–12,000 steps on weekends. This alone burns 400–500 extra kcal/day at 100 kg.</span></li>
+      <li><span class="tip-num">STRETCH</span><span>20–30 min of yoga or full-body stretching on Saturday morning. Prevents injury, improves posture.</span></li>
+      <li><span class="tip-num">MOBILITY</span><span>Hip flexors, thoracic spine, shoulder rotators. These get tight from training. Open them up.</span></li>
+      <li><span class="tip-num">COLD</span><span>Cold shower post-workout (not ice bath — contrast shower: 30s cold, 30s warm × 5). Reduces DOMS.</span></li>
+      <li><span class="tip-num">SOCIAL</span><span>Get out. Walk a market, a park. NEAT (non-exercise activity thermogenesis) is a massive calorie contributor.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🚨</span> Overtraining Warning Signs</div>
+    <div class="highlight red">If you experience 3+ of these signs, take an extra rest day immediately or schedule a deload week.</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">⚠️</span><span>Persistent soreness that doesn't resolve in 48–72 hours</span></li>
+      <li><span class="tip-num">⚠️</span><span>Strength decreasing on key lifts week over week</span></li>
+      <li><span class="tip-num">⚠️</span><span>Sleep quality declining or insomnia despite fatigue</span></li>
+      <li><span class="tip-num">⚠️</span><span>Mood irritability, low motivation, dreading workouts</span></li>
+      <li><span class="tip-num">⚠️</span><span>Resting heart rate elevated 5–10+ bpm above baseline</span></li>
+      <li><span class="tip-num">⚠️</span><span>Frequent illness or cold symptoms (immune suppression)</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">👣</span> Step Goal Strategy</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">TARGET</span><span><strong>10,000–12,000 steps/day</strong> on training days. 12,000–15,000 on rest days.</span></li>
+      <li><span class="tip-num">CALORIES</span><span>At 100 kg, roughly <strong>80–90 kcal burned per 1,000 steps</strong>. 10,000 steps = ~800–900 kcal burned from walking alone.</span></li>
+      <li><span class="tip-num">HOW</span><span>Park farther away. Take stairs. Walk 10 min after every meal (also improves glucose metabolism). Evening walk with family.</span></li>
+      <li><span class="tip-num">IMPACT</span><span>Going from 5,000 to 10,000 steps/day creates ~400 kcal extra deficit daily = ~0.5 kg extra fat loss/month from steps alone.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION: TIMELINE -->
+<div id="timeline" class="section">
+  <div class="section-title">4-MONTH <span>BATTLE PLAN</span></div>
+  <div class="section-sub">You're intermediate — you're not starting from zero. 4 months of locked-in execution gets you to 85 kg. Here's exactly what each month looks like, week by week.</div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-val">16</div><div class="metric-lbl">Weeks Total</div></div>
+    <div class="metric"><div class="metric-val">~3.5–4</div><div class="metric-lbl">kg lost per month</div></div>
+    <div class="metric"><div class="metric-val">80</div><div class="metric-lbl">Training sessions</div></div>
+    <div class="metric"><div class="metric-val">85 kg</div><div class="metric-lbl">Target End Weight</div></div>
+  </div>
+
+  <div class="highlight" style="margin-bottom:32px;">
+    <strong>Intermediate Advantage:</strong> You already know how to train. Your nervous system is primed, your technique is there, and your body responds faster to a structured program. 4 months is aggressive but completely achievable — intermediates can sustain ~1 kg/week fat loss without meaningful muscle loss when protein is high and training is hard.
+  </div>
+
+  <div class="timeline">
+
+    <!-- MONTH 1 -->
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--blue)"></div>
+      <div class="tl-month">MONTH 1 · WEEKS 1–4 · RECALIBRATE</div>
+      <div class="tl-weight">Target: 100 → 96–97 kg &nbsp;|&nbsp; Goal: 3–4 kg lost</div>
+      <div class="tl-desc" style="margin-top:10px;">
+        <strong style="color:var(--text)">The focus:</strong> Lock in the routine. Diet discipline. Hit protein every single day. Don't chase maximal weights — chase perfect sessions.<br><br>
+        <strong style="color:var(--accent)">Weeks 1–2:</strong> Establish baseline lifts. Record every session. Set up meal prep routine. Aim for 2200 kcal, 180g+ protein, 10k steps. Incline walk 20 min post-session at 8–10%.<br><br>
+        <strong style="color:var(--accent)">Weeks 3–4:</strong> Add weight to every compound lift you've mastered. Incline walk to 25 min, 10% grade. Waist should be down 2–3 cm already. Scale: 2–3 kg down at this point (includes water/glycogen).<br><br>
+        <strong style="color:var(--text)">Expected physique change:</strong> Face and waist noticeably leaner. Muscle fullness maintained. Strength trending upward despite deficit — a sign recomp is happening.
+      </div>
+    </div>
+
+    <!-- MONTH 2 -->
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--green)"></div>
+      <div class="tl-month">MONTH 2 · WEEKS 5–8 · MOMENTUM</div>
+      <div class="tl-weight">Target: 96–97 → 92–93 kg &nbsp;|&nbsp; Goal: 3–4 more kg lost</div>
+      <div class="tl-desc" style="margin-top:10px;">
+        <strong style="color:var(--text)">The focus:</strong> Increase intensity on every lift. Your body is now adapted. Push harder.<br><br>
+        <strong style="color:var(--accent)">Week 5:</strong> Deload week — drop to 60% weights, same exercises. Let the body supercompensate before the next push. Don't skip this — it's strategic, not lazy.<br><br>
+        <strong style="color:var(--accent)">Weeks 6–8:</strong> Ramp back up heavier than Week 4. Add one set to your main compound lifts (3→4 or 4→5). Incline walk to 30 min. Introduce one HIIT session (bike sprints) replacing Friday cardio. Steps: aim 11,000–12,000/day.<br><br>
+        <strong style="color:var(--text)">Expected physique change:</strong> Shirts fitting differently across shoulders — muscle is visible through the fat. People asking if you've lost weight. Major confidence boost. This is the month where transformation becomes real.
+      </div>
+    </div>
+
+    <!-- MONTH 3 -->
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--accent)"></div>
+      <div class="tl-month">MONTH 3 · WEEKS 9–12 · PEAK INTENSITY</div>
+      <div class="tl-weight">Target: 92–93 → 88–89 kg &nbsp;|&nbsp; Goal: 3–4 more kg lost</div>
+      <div class="tl-desc" style="margin-top:10px;">
+        <strong style="color:var(--text)">The focus:</strong> This is the hardest month mentally. The initial excitement is gone. Progress feels slower. You must train like a professional.<br><br>
+        <strong style="color:var(--accent)">Weeks 9–10:</strong> Heaviest weights of the program. Squat, deadlift, bench — hit 3-rep maxes (test strength). Use drop sets on isolation exercises (lateral raises, curls) for extra metabolic stress. Cardio: 30 min incline walk daily + 1 HIIT session.<br><br>
+        <strong style="color:var(--accent)">Weeks 11–12:</strong> Second deload (Week 11). Come back Week 12 fully recovered. Add drop sets to one exercise per muscle group. Sleep becomes even more critical — 8 hours minimum now. Steps: 12,000+ daily.<br><br>
+        <strong style="color:var(--text)">Expected physique change:</strong> Abs starting to show (especially upper abs). Waist down 8–10 cm from start. Shoulders broader and more capped. Legs visibly more defined. Old clothes don't fit. This is a completely different body.
+      </div>
+    </div>
+
+    <!-- MONTH 4 -->
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--accent2)"></div>
+      <div class="tl-month">MONTH 4 · WEEKS 13–16 · FINISH LINE</div>
+      <div class="tl-weight">Target: 88–89 → 85 kg 🎯 &nbsp;|&nbsp; Goal: Lock in the final 3–4 kg</div>
+      <div class="tl-desc" style="margin-top:10px;">
+        <strong style="color:var(--text)">The focus:</strong> Cross the finish line without losing muscle. Tighten diet precision. Crush every session.<br><br>
+        <strong style="color:var(--accent)">Weeks 13–14:</strong> Consider tightening calories to 2050–2100 kcal for the final push (not below 2000). Keep protein at 180–190g. Carb cycling option: lower carbs on non-training days, higher on leg/push days. Cardio stays at 30 min incline + 1 HIIT/week.<br><br>
+        <strong style="color:var(--accent)">Weeks 15–16:</strong> Final sprint. Final deload in Week 15 — one last supercompensation. Week 16: train at full intensity, capture progress photos, take measurements. Compare to Day 1. The transformation is done.<br><br>
+        <strong style="color:var(--text)">Expected final physique:</strong> 15 kg lighter, significantly more muscular, defined shoulders, visible abs in good lighting, dramatically stronger. You didn't just lose fat — you rebuilt your body. This is a body recomposition, not a diet.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Week by Week Summary Table -->
+  <div style="overflow-x:auto;margin-top:32px;margin-bottom:24px;">
+    <table class="overload-table">
+      <tr><th>Week</th><th>Phase</th><th>Est. Weight</th><th>Cardio</th><th>Key Action</th></tr>
+      <tr><td>1</td><td>Establish baseline</td><td>~100 kg</td><td>20 min incline walk</td><td>Lock in diet, hit 180g protein</td></tr>
+      <tr><td>2</td><td>Baseline cont.</td><td>~99 kg</td><td>20 min incline walk</td><td>Record all lifts, set PR baselines</td></tr>
+      <tr><td>3</td><td>Progressive push</td><td>~98 kg</td><td>25 min incline walk</td><td>Add weight to all compound lifts</td></tr>
+      <tr><td>4</td><td>Progressive push</td><td>~97 kg</td><td>25 min incline walk</td><td>Waist measurement check</td></tr>
+      <tr><td>5</td><td style="color:var(--blue)">DELOAD #1</td><td>~96 kg</td><td>20 min easy walk</td><td>60% weights, full recovery</td></tr>
+      <tr><td>6</td><td>Intensity increase</td><td>~95 kg</td><td>30 min incline walk</td><td>Add sets to compounds</td></tr>
+      <tr><td>7</td><td>Intensity increase</td><td>~94 kg</td><td>30 min walk + 1 HIIT</td><td>Introduce bike sprint HIIT</td></tr>
+      <tr><td>8</td><td>Peak volume M2</td><td>~93 kg</td><td>30 min walk + 1 HIIT</td><td>Progress photos (Month 2 check)</td></tr>
+      <tr><td>9</td><td>Heavy strength</td><td>~92 kg</td><td>30 min walk + 1 HIIT</td><td>Test 3-rep maxes on squat/bench</td></tr>
+      <tr><td>10</td><td>Heavy + drop sets</td><td>~91 kg</td><td>30 min walk + 1 HIIT</td><td>Add drop sets to isolations</td></tr>
+      <tr><td>11</td><td style="color:var(--blue)">DELOAD #2</td><td>~90 kg</td><td>20 min easy walk</td><td>60% weights, prioritise sleep 8h+</td></tr>
+      <tr><td>12</td><td>Peak volume M3</td><td>~89 kg</td><td>30 min walk + 1 HIIT</td><td>Measurements + photos</td></tr>
+      <tr><td>13</td><td>Diet tighten</td><td>~88 kg</td><td>30 min walk + 1 HIIT</td><td>Calories → 2050–2100 kcal</td></tr>
+      <tr><td>14</td><td>Carb cycling option</td><td>~87 kg</td><td>30 min walk + 1 HIIT</td><td>Lower carbs on rest days</td></tr>
+      <tr><td>15</td><td style="color:var(--blue)">DELOAD #3</td><td>~86 kg</td><td>20 min easy walk</td><td>Final recovery before finish</td></tr>
+      <tr><td style="color:var(--accent2);font-weight:700">16</td><td style="color:var(--accent2);font-weight:700">FINISH LINE 🎯</td><td style="color:var(--accent2);font-weight:700">~85 kg</td><td>30 min walk</td><td>Progress photos, measurements, celebrate</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📝</span> Reality Check: What Could Slow You Down</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">!</span><span><strong>Underestimating food intake</strong> is the #1 reason people don't hit their target. Use MyFitnessPal for at least the first 4 weeks to calibrate your eye. Most people eat 300–500 kcal more than they think.</span></li>
+      <li><span class="tip-num">!</span><span><strong>Scale weight is not fat loss.</strong> You might hold water before a big drop. Judge by 2-week averages, not daily readings. Trust the tape measure more than the scale.</span></li>
+      <li><span class="tip-num">!</span><span><strong>Skipping deload weeks</strong> feels productive but is counterproductive. These are non-negotiable for an intermediate training 5×/week. Skip them and you risk stalling or injury.</span></li>
+      <li><span class="tip-num">!</span><span><strong>If you stall for 2+ weeks:</strong> First check diet adherence. Then add 1,000 steps/day. Only then reduce calories by 100–150 kcal. Never slash calories drastically — it triggers muscle loss and metabolic adaptation.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION: MISTAKES -->
+<div id="mistakes" class="section">
+  <div class="section-title">MISTAKES TO <span>AVOID</span></div>
+  <div class="section-sub">Most transformations fail not from lack of effort but from avoidable mistakes. Know these before you make them.</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title" style="color:var(--red)">❌ Fat Loss Mistakes</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span><strong>Too aggressive a deficit:</strong> Eating under 1800 kcal as a 100 kg active male causes muscle loss, metabolic slowdown, and burnout. Never go below 2000 kcal.</span></li>
+        <li><span class="tip-num">02</span><span><strong>Ignoring protein:</strong> If you don't hit 160–180g protein daily, you will lose muscle in a deficit. Period.</span></li>
+        <li><span class="tip-num">03</span><span><strong>Weekend overeating:</strong> Training perfectly Mon–Fri then eating 3500+ kcal Sat–Sun erases the entire week's deficit. Be mindful, not perfect.</span></li>
+        <li><span class="tip-num">04</span><span><strong>Liquid calories:</strong> Juice, soft drinks, chai with sugar, flavored milk — these are invisible calorie bombs. Drink water, black coffee, or protein shakes.</span></li>
+        <li><span class="tip-num">05</span><span><strong>Weighing daily and panicking:</strong> Weight fluctuates 1–3 kg daily from water. Weekly average weight is what matters.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red)">❌ Cardio Mistakes</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span><strong>Doing cardio before weights:</strong> Burns glycogen needed for strength. You'll lift less, build less muscle. Always weights first.</span></li>
+        <li><span class="tip-num">02</span><span><strong>Too much cardio too soon:</strong> 60+ min daily cardio as a beginner = cortisol spike, muscle breakdown, injury, burnout. 25 min post-weights is enough.</span></li>
+        <li><span class="tip-num">03</span><span><strong>Same cardio every day:</strong> Body adapts in 3–4 weeks. Rotate modalities weekly. Vary intensity monthly.</span></li>
+        <li><span class="tip-num">04</span><span><strong>"Rewarding" cardio with food:</strong> The treadmill says 400 kcal. That doesn't mean you earned a samosa. Cardio supports your deficit — it doesn't permit eating back calories.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red)">❌ Training Mistakes</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span><strong>Skipping compound lifts for machines:</strong> Bench, squat, deadlift, row = maximum muscle activation and calorie burn. Don't skip them because they're hard.</span></li>
+        <li><span class="tip-num">02</span><span><strong>Ego lifting with bad form:</strong> Heavy weight with poor form builds injuries, not muscle. Leave your ego at the door, especially as a beginner.</span></li>
+        <li><span class="tip-num">03</span><span><strong>Never progressive overloading:</strong> Lifting the same 10 kg dumbbell for 6 months. Your body will not change. Push progressively.</span></li>
+        <li><span class="tip-num">04</span><span><strong>Skipping legs:</strong> Legs = largest muscle group = biggest hormonal response. Squatting and deadlifting burns more fat than any isolation exercise.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red)">❌ Recovery Mistakes</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span><strong>Sleeping 5–6 hours:</strong> Sleep deprivation kills transformation. Ghrelin (hunger hormone) increases 25%. Testosterone drops 10–15%. Fat loss slows dramatically.</span></li>
+        <li><span class="tip-num">02</span><span><strong>No rest days:</strong> Training 7 days a week without planned rest = overtraining = going backwards. Muscles grow at rest, not in the gym.</span></li>
+        <li><span class="tip-num">03</span><span><strong>Ignoring pain:</strong> Muscle soreness is normal. Sharp joint pain is not. Stop and assess. Most injuries are preventable.</span></li>
+        <li><span class="tip-num">04</span><span><strong>High stress, no stress management:</strong> Chronic stress = chronic cortisol = stubborn belly fat. Meditation, breathing, nature walks — these are part of the program.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: MINDSET -->
+<div id="mindset" class="section">
+  <div class="section-title">MINDSET <span>& CONSISTENCY</span></div>
+  <div class="section-sub">Discipline is a system, not a feeling. Build the system and you'll never rely on motivation again.</div>
+
+  <div class="highlight green">
+    <strong>The truth:</strong> Motivation gets you started. Discipline keeps you going. But systems — automatic habits that don't require willpower — are what get you all the way there.
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <div class="card-title"><span class="icon">🧠</span> The Identity Shift</div>
+    <p>The most powerful change is not how you train — it's how you see yourself. Instead of "I'm trying to lose weight," start saying <strong style="color:var(--accent)">"I am someone who trains every morning and eats well."</strong></p>
+    <p>Every rep you complete, every meal you prepare, every step you walk is a vote for that identity. After 6 months of consistent votes, it's no longer a diet — it's who you are.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">🔁</span> Building Unbreakable Habits</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">01</span><span><strong>Lay out your gym clothes the night before.</strong> Remove friction from the morning decision.</span></li>
+        <li><span class="tip-num">02</span><span><strong>Same alarm, every day.</strong> Routine is everything. Your body will start waking up naturally within 3 weeks.</span></li>
+        <li><span class="tip-num">03</span><span><strong>Meal prep on Sunday.</strong> Boil eggs, grill chicken, prep dal. When food is ready, you won't reach for junk.</span></li>
+        <li><span class="tip-num">04</span><span><strong>Find your gym partner or accountability buddy.</strong> Cancelling on yourself is easy. Cancelling on someone else is harder.</span></li>
+        <li><span class="tip-num">05</span><span><strong>Track your streaks.</strong> A simple calendar with X marks for each completed day is one of the most powerful motivation tools.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📉</span> Handling Bad Days</div>
+      <ul class="tip-list">
+        <li><span class="tip-num">MISS</span><span><strong>You miss a workout:</strong> Don't try to "make it up" with extra sessions. Just show up tomorrow. Missing one is normal. Missing a week is a pattern — catch it early.</span></li>
+        <li><span class="tip-num">SLIP</span><span><strong>You overeat one day:</strong> Not a crisis. The damage is usually only 1000–2000 extra kcal — half a pound at most. Eat clean the next day. Move on.</span></li>
+        <li><span class="tip-num">STALL</span><span><strong>The scale doesn't move for 2 weeks:</strong> Measure your waist. Take a progress photo. You may be recomping (losing fat, gaining muscle simultaneously). If both stall, audit your diet.</span></li>
+        <li><span class="tip-num">DOUBT</span><span><strong>You think it's not working:</strong> Go back to Week 1. Look at your workout log. You're lifting heavier. That IS working.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏆</span> Your 6-Month Commitment Contract</div>
+    <div style="background:#0f0f0f;border:1px solid var(--border);border-radius:8px;padding:24px;margin-top:8px;">
+      <p style="color:var(--text);font-size:15px;line-height:1.9;">
+        I commit to training <strong>5 days per week, every morning</strong>, for the next 6 months.<br>
+        I commit to eating <strong>at least 180g of protein</strong> every single day.<br>
+        I commit to <strong>10,000 steps</strong> as a daily minimum, not an occasional achievement.<br>
+        I commit to <strong>7–8 hours of sleep</strong> because I know it's part of the program.<br>
+        I commit to <strong>judging results monthly, not daily</strong>, and trusting the process.<br>
+        I commit to <strong>showing up on hard days</strong>, even if the session is shorter or lighter.<br><br>
+        <span style="color:var(--accent);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;">The best investment you will ever make is in yourself. Start today.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> Monthly Check-In Checklist</div>
+    <ul class="tip-list">
+      <li><span class="tip-num">📸</span><span>Take progress photos — front, side, back — every 4 weeks. Same time, same place, same lighting.</span></li>
+      <li><span class="tip-num">📏</span><span>Measure waist, chest, arms, thighs every 2 weeks. Numbers tell the true story.</span></li>
+      <li><span class="tip-num">📊</span><span>Review workout log — are your weights going up? If not in 4 weeks, something needs to change.</span></li>
+      <li><span class="tip-num">🍽️</span><span>Review average daily calories and protein for the month using a food tracking app (MyFitnessPal, Cronometer).</span></li>
+      <li><span class="tip-num">😴</span><span>How was sleep quality? Average steps per day? These are lagging indicators of results.</span></li>
+      <li><span class="tip-num">🔧</span><span>Adjust: If losing more than 1.5 kg/week, eat slightly more (risk muscle loss). If losing 0, tighten diet or increase activity.</span></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
